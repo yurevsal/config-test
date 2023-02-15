@@ -2,17 +2,29 @@ name: Atualização do repositório
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  update-repo:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-lastet
     steps:
       - name: Checkout do repositório
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@1
+        name: deploy
       - name: Atualização do repositório
-        run: |
-          cd ${{ github.workspace }}
-          git pull
+        uses: easingthemes/ssh-deploy@main
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SOURCE: "/"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.REMOTE_TARGET }}
+        # EXCLUDE: "/dist/, /node_modules/"
+        # SCRIPT_BEFORE: |
+        #   whoami
+        #   ls -al
+        # SCRIPT_AFTER: |
+        #   whoami
+        #   ls -al
+        #   echo $RSYNC_STDOUT
+
