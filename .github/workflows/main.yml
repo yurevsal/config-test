@@ -13,4 +13,5 @@ jobs:
     - name: Pull Repo
       run: |
         ls -a
+        pwd
         git pull
