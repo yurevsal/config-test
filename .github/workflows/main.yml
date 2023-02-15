@@ -12,5 +12,5 @@ jobs:
       uses: actions/checkout@v3
     - name: Pull Repo
       run: |
-        cd /home/yurevsal/deploy/config-test # Substitua pelo caminho para o seu repositório local
+        cd ${{ github.workspace }}/deploy/config-test # Substitua pelo caminho para o seu repositório local
         git pull
