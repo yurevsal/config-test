@@ -13,5 +13,4 @@ jobs:
     - name: Pull Repo
       run: |
         ls -a
-        git fetch --all
-        git reset --hard origin/master
+        git pull
