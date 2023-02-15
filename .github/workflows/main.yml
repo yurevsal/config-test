@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-lastet
     steps:
       - name: Checkout do repositório
-        uses: actions/checkout@1
+        uses: actions/checkout@v1
         name: deploy
       - name: Atualização do repositório
         uses: easingthemes/ssh-deploy@main
