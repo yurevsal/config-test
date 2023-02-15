@@ -13,5 +13,5 @@ jobs:
 
     - name: Atualizar repositório local
       run: |
-        cd /home/yurevsal/deploy/config-test
+        cd ~deploy/config-test
         git pull
