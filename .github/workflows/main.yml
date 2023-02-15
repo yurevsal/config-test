@@ -1,16 +1,18 @@
-name: Atualizar repositório local
+name: Atualização do repositório
 
 on:
   push:
     branches: [main]
 
 jobs:
-  atualizar:
+  update-repo:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Atualizar repositório local
-      run: |
-        git pull
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Atualização do repositório
+        run: |
+          cd ${{ github.workspace }}
+          git pull
