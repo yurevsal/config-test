@@ -1,15 +1,26 @@
-on: push:
-    branches:
-      - main
-name: 🚀 Deploy website on push
+name: Build and Deploy Assets
+on:
+  push:
+    branches: [master]
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
+    name: Deploy Assets
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v3
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v1
+        with:
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Checkout the commit
+        uses: actions/checkout@v2
+
+      - name: Deploy
+        uses: manzoorwanijk/action-deploy-to-repo@master
+        with:
+          src_dir: build
+          target_owner: yurevsal
+          target_repo: config-test
+          target_dir: src/assets
+          target_branch: master # default
