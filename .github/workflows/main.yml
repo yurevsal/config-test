@@ -1,26 +1,17 @@
-name: Build and Deploy Assets
+name: Atualizar repositório local
+
 on:
   push:
-    branches: [master]
+    branches: [main]
+
 jobs:
-  build-and-deploy:
+  atualizar:
     runs-on: ubuntu-latest
-    name: Deploy Assets
+
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
-        with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - uses: actions/checkout@v2
 
-      - name: Checkout the commit
-        uses: actions/checkout@v2
-
-      - name: Deploy
-        uses: manzoorwanijk/action-deploy-to-repo@master
-        with:
-          src_dir: build
-          target_owner: yurevsal
-          target_repo: config-test
-          target_dir: src/assets
-          target_branch: master # default
+    - name: Atualizar repositório local
+      run: |
+        cd /home/yurevsal/deploy/config-test
+        git pull
