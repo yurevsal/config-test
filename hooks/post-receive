@@ -1,5 +1,8 @@
 #!/bin/bash
-echo "Recebido push, fazendo o pull do repositório..."
-cd ~/projects/testes/config-test.git
-git --work-tree=~/projects/testes --git-dir=~/projects/testes/config-test.git pull origin master
+
+# Muda para o diretório do repositório local
+cd ~/projects/testes/config-test
+
+# Executa o comando para fazer o pull
+git pull
 ssh user@host '~/projects/testes/config-test/hooks/post-receive'
