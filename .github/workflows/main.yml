@@ -12,5 +12,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Pull Repo
       run: |
-        cd ~/deploy/config-test # Substitua pelo caminho para o seu repositório local
+        cd /home/yurevsal/deploy/config-test # Substitua pelo caminho para o seu repositório local
         git pull
