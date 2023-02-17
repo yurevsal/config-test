@@ -22,3 +22,8 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
+      - name: Pull Repo
+        run: |
+          cd ${{ secrets.TARGET_DIR }}
+          echo $PWD > caminho_atual.txt
+          
