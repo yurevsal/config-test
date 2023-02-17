@@ -24,5 +24,6 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
       - name: Pull Repo
         run: |
+          cd /home/ubuntu/test
           echo $PWD > caminho_atual.txt
           
