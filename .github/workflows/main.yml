@@ -24,6 +24,5 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
       - name: Pull Repo
         run: |
-          cd ${{ secrets.TARGET_DIR }}
           echo $PWD > caminho_atual.txt
           
