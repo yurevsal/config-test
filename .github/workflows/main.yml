@@ -1,17 +1,24 @@
-name: Pull Repo
+name: Push-to-EC2
 
+# Trigger deployment only on push to master branch
 on:
   push:
-    branches: [ main ] # Altere "main" para a branch principal do seu repositório
+    branches:
+      - master
 
 jobs:
-  pull:
+  deploy:
+    name: Deploy to EC2 on master branch push
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Pull Repo
-      run: |
-        ls -a
-        pwd
-        git pull
+      - name: Checkout the files
+        uses: actions/checkout@v2
+
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
